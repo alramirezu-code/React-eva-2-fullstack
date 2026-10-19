@@ -2,7 +2,7 @@ export const blogs = [
   {
     slug: "taladro",
     titulo: "Cómo elegir un taladro",
-    imagen: "img/Taladro.webp",
+    imagen: "/img/Taladro.webp",
     resumen:
       "Conoce algunos aspectos importantes que debes considerar al momento de elegir un taladro para tus proyectos.",
     contenido: [
@@ -14,7 +14,7 @@ export const blogs = [
   {
     slug: "paneles",
     titulo: "Paneles para renovar tus espacios",
-    imagen: "img/Panel_metal_look_madera.webp",
+    imagen: "/img/Panel_metal_look_madera.webp",
     resumen:
       "Los paneles decorativos son una alternativa práctica para mejorar distintos espacios del hogar.",
     contenido: [

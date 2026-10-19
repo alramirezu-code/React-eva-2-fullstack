@@ -16,6 +16,7 @@ import Ofertas from "./pages/Ofertas";
 import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
 import Blogs from "./pages/Blogs";
+import BlogDetalle from "./pages/BlogDetalle";
 
  function App() {
   return (
@@ -38,6 +39,7 @@ import Blogs from "./pages/Blogs";
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:slug" element={<BlogDetalle />} />
       </Routes>
     </>
   );

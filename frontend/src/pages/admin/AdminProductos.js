@@ -40,16 +40,23 @@ export default function AdminProductos() {
 
     if (valores.descripcion.length > 500) e.descripcion = "Máximo 500 caracteres.";
 
-    if (valores.precio === "") e.precio = "El precio es obligatorio.";
-    else if (isNaN(Number(valores.precio)) || Number(valores.precio) < 0) {
-      e.precio = "El precio debe ser un número mayor o igual a 0.";
-    }
-
-    if (valores.stock === "") e.stock = "El stock es obligatorio.";
-    else if (!/^\d+$/.test(valores.stock)) e.stock = "Debe ser un número entero mayor o igual a 0.";
-
-    if (valores.stockCritico !== "" && !/^\d+$/.test(valores.stockCritico)) {
-      e.stockCritico = "Debe ser un número entero mayor o igual a 0.";
+    function validarCampo(campo, valor) {
+      const e = { ...errores };
+      if (campo === "precio") {
+        if (valor === "") e.precio = "El precio es obligatorio.";
+        else if (isNaN(Number(valor)) || Number(valor) < 0) e.precio = "El precio debe ser un número mayor o igual a 0.";
+        else delete e.precio;
+      }
+      if (campo === "stock") {
+        if (valor === "") e.stock = "El stock es obligatorio.";
+        else if (!/^\d+$/.test(valor)) e.stock = "Debe ser un número entero mayor o igual a 0.";
+        else delete e.stock;
+      }
+      if (campo === "stockCritico") {
+        if (valor !== "" && !/^\d+$/.test(valor)) e.stockCritico = "Debe ser un número entero mayor o igual a 0.";
+        else delete e.stockCritico;
+      }
+      setErrores(e);
     }
 
     if (valores.categoria === "") e.categoria = "Seleccione una categoría.";
@@ -103,7 +110,7 @@ export default function AdminProductos() {
       stock: Number(valores.stock),
       stockCritico: criticoTexto === "" ? 0 : Number(criticoTexto),
       categoria: valores.categoria,
-      imagen: valores.imagen.trim() || "img/producto_default.jpg",
+      imagen: valores.imagen.trim() || "/img/producto_default.jpg",
     };
 
     if (editando) {

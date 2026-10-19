@@ -11,7 +11,7 @@ export const productosFijos = [
     stock: 20,
     stockCritico: 5,
     categoria: "Herramientas",
-    imagen: "img/Set Herramientas.webp",
+    imagen: "/img/Set Herramientas.webp",
   },
   {
     codigo: "PRO002",
@@ -22,7 +22,7 @@ export const productosFijos = [
     stock: 15,
     stockCritico: 5,
     categoria: "Materiales",
-    imagen: "img/Concertina_Alambre_Puas.webp",
+    imagen: "/img/Concertina_Alambre_Puas.webp",
   },
   {
     codigo: "PRO003",
@@ -34,7 +34,7 @@ export const productosFijos = [
     stock: 20,
     stockCritico: 5,
     categoria: "Materiales",
-    imagen: "img/Rollo_aislante_aluminio.webp",
+    imagen: "/img/Rollo_aislante_aluminio.webp",
   },
   {
     codigo: "PRO004",
@@ -45,7 +45,7 @@ export const productosFijos = [
     stock: 25,
     stockCritico: 5,
     categoria: "Materiales",
-    imagen: "img/Panel_Pvc.webp",
+    imagen: "/img/Panel_Pvc.webp",
   },
   {
     codigo: "PRO005",
@@ -56,7 +56,7 @@ export const productosFijos = [
     stock: 15,
     stockCritico: 5,
     categoria: "Materiales",
-    imagen: "img/Panel_metal_look_madera.webp",
+    imagen: "/img/Panel_metal_look_madera.webp",
   },
   {
     codigo: "PRO006",
@@ -67,7 +67,7 @@ export const productosFijos = [
     stock: 30,
     stockCritico: 10,
     categoria: "Materiales",
-    imagen: "img/Plancha_yeso_carton.webp",
+    imagen: "/img/Plancha_yeso_carton.webp",
   },
   {
     codigo: "PRO007",
@@ -79,7 +79,7 @@ export const productosFijos = [
     stock: 20,
     stockCritico: 5,
     categoria: "Adhesivos",
-    imagen: "img/Pegamento_para_Madera.webp",
+    imagen: "/img/Pegamento_para_Madera.webp",
   },
   {
     codigo: "PRO008",
@@ -90,7 +90,7 @@ export const productosFijos = [
     stock: 10,
     stockCritico: 3,
     categoria: "Herramientas",
-    imagen: "img/Taladro.webp",
+    imagen: "/img/Taladro.webp",
   },
   {
     codigo: "PRO009",
@@ -102,7 +102,7 @@ export const productosFijos = [
     stock: 15,
     stockCritico: 5,
     categoria: "Materiales",
-    imagen: "img/Mortero_Impermeabilizante.webp",
+    imagen: "/img/Mortero_Impermeabilizante.webp",
   },
 ];
 

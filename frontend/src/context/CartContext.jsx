@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { descontarStock } from "../data/productos";
 
 const CartContext = createContext(null);
 
@@ -73,6 +74,11 @@ export function CartProvider({ children }) {
 
     ordenes.push(nuevaOrden);
     localStorage.setItem("ordenes", JSON.stringify(ordenes));
+
+        // Descuenta el stock de cada producto comprado
+    carrito.forEach((item) => {
+      descontarStock(item.codigo, item.cantidad);
+    });
 
     return nuevaOrden;
   }, [carrito, total]);
