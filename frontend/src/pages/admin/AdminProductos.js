@@ -21,49 +21,60 @@ export default function AdminProductos() {
 
   const todos = leerTodosLosProductos();
 
+
   function validar() {
-    const e = {};
+  const e = {};
 
-    if (valores.codigo.trim() === "") {
-      e.codigo = "El código es obligatorio.";
-    } else if (valores.codigo.trim().length < 3) {
-      e.codigo = "El código debe tener al menos 3 caracteres.";
-    } else {
-      const repetido = todos.some(
-        (p) => p.codigo.toLowerCase() === valores.codigo.trim().toLowerCase() && p.codigo !== editando
-      );
-      if (repetido) e.codigo = "Ya existe un producto con este código.";
-    }
-
-    if (valores.nombre.trim() === "") e.nombre = "El nombre es obligatorio.";
-    else if (valores.nombre.length > 100) e.nombre = "Máximo 100 caracteres.";
-
-    if (valores.descripcion.length > 500) e.descripcion = "Máximo 500 caracteres.";
-
-    function validarCampo(campo, valor) {
-      const e = { ...errores };
-      if (campo === "precio") {
-        if (valor === "") e.precio = "El precio es obligatorio.";
-        else if (isNaN(Number(valor)) || Number(valor) < 0) e.precio = "El precio debe ser un número mayor o igual a 0.";
-        else delete e.precio;
-      }
-      if (campo === "stock") {
-        if (valor === "") e.stock = "El stock es obligatorio.";
-        else if (!/^\d+$/.test(valor)) e.stock = "Debe ser un número entero mayor o igual a 0.";
-        else delete e.stock;
-      }
-      if (campo === "stockCritico") {
-        if (valor !== "" && !/^\d+$/.test(valor)) e.stockCritico = "Debe ser un número entero mayor o igual a 0.";
-        else delete e.stockCritico;
-      }
-      setErrores(e);
-    }
-
-    if (valores.categoria === "") e.categoria = "Seleccione una categoría.";
-
-    setErrores(e);
-    return Object.keys(e).length === 0;
+  if (valores.codigo.trim() === "") {
+    e.codigo = "El código es obligatorio.";
+  } else if (valores.codigo.trim().length < 3) {
+    e.codigo = "El código debe tener al menos 3 caracteres.";
+  } else {
+    const repetido = todos.some(
+      (p) => p.codigo.toLowerCase() === valores.codigo.trim().toLowerCase() && p.codigo !== editando
+    );
+    if (repetido) e.codigo = "Ya existe un producto con este código.";
   }
+
+  if (valores.nombre.trim() === "") e.nombre = "El nombre es obligatorio.";
+  else if (valores.nombre.length > 100) e.nombre = "Máximo 100 caracteres.";
+
+  if (valores.descripcion.length > 500) e.descripcion = "Máximo 500 caracteres.";
+
+  if (valores.precio === "") e.precio = "El precio es obligatorio.";
+  else if (isNaN(Number(valores.precio)) || Number(valores.precio) < 0) e.precio = "El precio debe ser un número mayor o igual a 0.";
+
+  if (valores.stock === "") e.stock = "El stock es obligatorio.";
+  else if (!/^\d+$/.test(valores.stock)) e.stock = "Debe ser un número entero mayor o igual a 0.";
+
+  if (valores.stockCritico !== "" && !/^\d+$/.test(valores.stockCritico)) {
+    e.stockCritico = "Debe ser un número entero mayor o igual a 0.";
+  }
+
+  if (valores.categoria === "") e.categoria = "Seleccione una categoría.";
+
+  setErrores(e);
+  return Object.keys(e).length === 0;
+}
+
+function validarCampo(campo, valor) {
+  const e = { ...errores };
+  if (campo === "precio") {
+    if (valor === "") e.precio = "El precio es obligatorio.";
+    else if (isNaN(Number(valor)) || Number(valor) < 0) e.precio = "El precio debe ser un número mayor o igual a 0.";
+    else delete e.precio;
+  }
+  if (campo === "stock") {
+    if (valor === "") e.stock = "El stock es obligatorio.";
+    else if (!/^\d+$/.test(valor)) e.stock = "Debe ser un número entero mayor o igual a 0.";
+    else delete e.stock;
+  }
+  if (campo === "stockCritico") {
+    if (valor !== "" && !/^\d+$/.test(valor)) e.stockCritico = "Debe ser un número entero mayor o igual a 0.";
+    else delete e.stockCritico;
+  }
+  setErrores(e);
+}
 
   function nuevoProducto() {
     setEditando(null);
@@ -185,6 +196,7 @@ export default function AdminProductos() {
                 className={`form-control ${errores.precio ? "is-invalid" : ""}`}
                 value={valores.precio}
                 onChange={(e) => setValores({ ...valores, precio: e.target.value })}
+                onBlur={(e) => validarCampo("precio", e.target.value)}
               />
               {errores.precio && <div className="invalid-feedback d-block">{errores.precio}</div>}
             </div>
@@ -196,6 +208,7 @@ export default function AdminProductos() {
                 className={`form-control ${errores.stock ? "is-invalid" : ""}`}
                 value={valores.stock}
                 onChange={(e) => setValores({ ...valores, stock: e.target.value })}
+                onBlur={(e) => validarCampo("stock", e.target.value)}
               />
               {errores.stock && <div className="invalid-feedback d-block">{errores.stock}</div>}
             </div>
@@ -207,6 +220,7 @@ export default function AdminProductos() {
                 className={`form-control ${errores.stockCritico ? "is-invalid" : ""}`}
                 value={valores.stockCritico}
                 onChange={(e) => setValores({ ...valores, stockCritico: e.target.value })}
+                onBlur={(e) => validarCampo("stockCritico", e.target.value)}
               />
               {errores.stockCritico && <div className="invalid-feedback d-block">{errores.stockCritico}</div>}
             </div>
